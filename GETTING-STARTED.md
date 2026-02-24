@@ -11,6 +11,23 @@ This guide walks you through every step, in order. Do them one at a time. Don't 
 - Your Mac
 - About 30 minutes for setup
 - A credit card (for the Claude Pro subscription — $20/month)
+- The zip file you received along with this guide (`luis-ghost-setup.zip`)
+
+## Before anything else: Unzip the files
+
+You received a zip file called `luis-ghost-setup.zip`. It contains two files:
+
+- **GETTING-STARTED.md** — this guide (you're reading it)
+- **setup.sh** — a script that installs your tools (you'll run this in Step 4)
+
+**Do this now:**
+
+1. Find `luis-ghost-setup.zip` in your **Downloads** folder
+2. **Double-click** it — macOS automatically unzips it and creates a folder
+3. Open that folder. You'll see the two files.
+4. Drag **`setup.sh`** to your **home folder**. To find your home folder: open Finder, look in the left sidebar for the folder with a **house icon** and **your name**. That's it. Drag `setup.sh` there.
+
+`setup.sh` is now ready for Step 4. Keep reading.
 
 ---
 
@@ -68,14 +85,9 @@ Replace YOUR-USERNAME with your actual GitHub username. He needs to run that com
 
 This step installs five things your Mac needs. You run one command and it handles everything.
 
-**First**, you need the setup file I sent you. Find `setup.sh` in your Downloads (or wherever I sent it to you).
+You already moved `setup.sh` to your home folder at the top of this guide. Now you'll run it.
 
-**Move it to your home folder:**
-- Open **Finder**
-- In the sidebar, click the folder with **your name** and a house icon — that's your home folder
-- Drag `setup.sh` into that folder
-
-**Now open Warp and type this, then press Enter:**
+**Open Warp and type this, then press Enter:**
 
 ```
 bash ~/setup.sh
