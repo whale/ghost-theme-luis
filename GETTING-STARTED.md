@@ -34,9 +34,17 @@ This guide walks you through every step, in order. Do them one at a time. Don't 
 1. Go to that link
 2. Click **Sign up** and create a free account
 3. Pick a username you'll remember
-4. **Send your username back to me** so I can give you access to the project
 
 **What is GitHub?** Think of it as Dropbox for code, but with a complete history of every change ever made. It's how we'll share the project — I can see your changes, you can see mine.
+
+**IMPORTANT — Do this now before continuing:**
+
+Text or message your collaborator with exactly this:
+
+> My GitHub username is ______. Please run this in your terminal:
+> `gh api repos/whale/ghost-theme-luis/collaborators/YOUR-USERNAME -X PUT`
+
+Replace YOUR-USERNAME with your actual GitHub username. He needs to run that command to give you access to the project. **Wait until he confirms he did it before moving to Step 6.** Steps 3, 4, and 5 don't need access, so keep going with those while you wait.
 
 ---
 
@@ -272,4 +280,16 @@ Once everything above is done, this is all you do each day:
 
 ---
 
-*If you get stuck, ask Claude first — it's designed to help you work through problems. If Claude is stuck, call me.*
+---
+
+## When you're done with setup
+
+Once you've finished Steps 1–9 and Claude Code is running, **send your collaborator a message:**
+
+> I'm set up. Claude Code is running and I can see the project files. Ready to start building.
+
+This lets them know everything worked and you're ready to go.
+
+---
+
+*If you get stuck, ask Claude first — it's designed to help you work through problems. If Claude is stuck, call your collaborator.*
