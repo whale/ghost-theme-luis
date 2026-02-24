@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started — Ghost Theme Development</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .step {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .step-why {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .step-why strong {
+            color: #333;
+        }
+
+        code {
+            font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, monospace;
+            background: #f0f0f0;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.88rem;
+        }
+
+        .command-block {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 0.75rem 0;
+            font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .command-block .prompt {
+            color: #888;
+            user-select: none;
+        }
+
+        .command-block .comment {
+            color: #666;
+            font-style: italic;
+        }
+
+        .tip {
+            background: #fffbeb;
+            border: 1px solid #f5d062;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            font-size: 0.92rem;
+        }
+
+        .tip::before {
+            content: "Tip: ";
+            font-weight: 600;
+        }
+
+        .warning {
+            background: #fef2f2;
+            border: 1px solid #f5a3a3;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            font-size: 0.92rem;
+        }
+
+        .warning::before {
+            content: "Heads up: ";
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.92rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            font-weight: 600;
+            background: #f5f5f5;
+        }
+
+        .section-intro {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .big-picture {
+            background: #f0f7ff;
+            border: 1px solid #b3d4fc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .big-picture h3 {
+            margin-top: 0;
+            color: #1a1a1a;
+        }
+
+        .cheat-sheet {
+            background: #f0faf0;
+            border: 1px solid #a3d9a3;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cheat-sheet h3 {
+            margin-top: 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 3rem 0;
+        }
+
+        ul {
+            margin: 0.5rem 0 1rem 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        a {
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Building Your Ghost Theme</h1>
+        <p class="subtitle">A step-by-step guide to get you from zero to building your theme with Claude Code.</p>
+
+        <div class="big-picture">
+            <h3>The big picture</h3>
+            <p>You're going to install a few tools on your Mac, then use an AI assistant called <strong>Claude Code</strong> to help you turn your Figma designs into a working Ghost theme. You'll talk to Claude in plain English — describe what you want, and it writes the code.</p>
+            <p>Everything you build gets saved with <strong>version control</strong> (think: unlimited undo history). You can experiment freely because you can always go back to a version that was working.</p>
+            <p style="margin-bottom:0">You and your collaborator will share the project through <strong>GitHub</strong> — like Google Docs for code. You both see each other's changes.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>Part 1: Accounts You Need</h2>
+        <!-- ============================================================ -->
+
+        <p class="section-intro">Before installing anything, create these two accounts. Both are free to start.</p>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">1</span> Create a Claude account</div>
+            <p>Go to <a href="https://claude.ai">claude.ai</a> and sign up.</p>
+            <p>Then subscribe to the <strong>Pro plan ($20/month)</strong> at <a href="https://claude.ai/pricing">claude.ai/pricing</a>.</p>
+            <div class="step-why">
+                <strong>Why:</strong> Claude Code is the AI that helps you write code. The Pro plan gives you access to it. Think of it like hiring a developer who works inside your terminal.
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">2</span> Create a GitHub account</div>
+            <p>Go to <a href="https://github.com">github.com</a> and sign up. Free account is fine.</p>
+            <p>After you create your account, <strong>tell your collaborator your username</strong> so they can give you access to the shared project.</p>
+            <div class="step-why">
+                <strong>Why:</strong> GitHub is where your project lives online. It's like a shared Dropbox folder specifically built for code — but with a full history of every change anyone ever made. You and your collaborator both work on the same project through GitHub.
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>Part 2: Install Your Tools</h2>
+        <!-- ============================================================ -->
+
+        <p class="section-intro">These steps happen in the <strong>terminal</strong> — a text-based app where you type commands instead of clicking buttons. It looks old-school, but it's incredibly powerful once you get used to it.</p>
+
+        <h3>First: Download a terminal app</h3>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">3</span> Download Warp</div>
+            <p>Go to <a href="https://www.warp.dev">warp.dev</a> and download the app. Install it like any other Mac app (drag to Applications).</p>
+            <p>Open Warp. It'll ask you to create a Warp account — follow the prompts.</p>
+            <div class="step-why">
+                <strong>Why Warp instead of the built-in Terminal?</strong> Warp is a modern terminal designed to be less intimidating. Commands and their results are visually separated into blocks (like messages in a chat). It has autocomplete that shows what commands do. Once you get comfortable, you can switch to any terminal you want — but Warp is the friendliest starting point.
+            </div>
+        </div>
+
+        <h3>Next: Run the setup script</h3>
+
+        <p>Your collaborator sent you a file called <code>setup.sh</code> along with this guide. This single file installs everything else you need.</p>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">4</span> Move setup.sh to your home folder</div>
+            <p>Open <strong>Finder</strong>. Find <code>setup.sh</code> (probably in Downloads or wherever you received it). Move it to your <strong>home folder</strong>.</p>
+            <p class="tip">Your home folder is the one with the house icon in Finder's sidebar. It has your name on it. The path is something like <code>/Users/luis/</code>.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">5</span> Run the setup script</div>
+            <p>In Warp, type this command and press <strong>Enter</strong>:</p>
+            <div class="command-block">
+                <span class="prompt">$ </span>bash ~/setup.sh
+            </div>
+            <p>"Running" a command means: you type it into the terminal and press Enter. The computer then executes that instruction.</p>
+            <p>This command means: "Use bash (a program that reads scripts) to run the file called setup.sh in my home folder (~/ is shorthand for your home folder)."</p>
+            <p>The script will take a few minutes. It prints what it's doing at each step. <strong>You may be asked for your Mac password</strong> partway through — this is normal. Type your password (it won't show the characters — that's a security feature, not a bug) and press Enter.</p>
+            <div class="step-why">
+                <strong>What this installs:</strong>
+                <ul>
+                    <li><strong>Homebrew</strong> — a tool that installs other tools (like an app store for the terminal)</li>
+                    <li><strong>Git</strong> — version control (your "save point" system)</li>
+                    <li><strong>GitHub CLI</strong> — connects your terminal to GitHub</li>
+                    <li><strong>Node.js</strong> — a behind-the-scenes tool that Ghost themes need</li>
+                    <li><strong>Claude Code</strong> — your AI coding partner</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning">After the script finishes, <strong>close Warp completely</strong> (Cmd+Q) and <strong>reopen it</strong>. This is necessary so the terminal recognizes the new tools you just installed.</div>
+
+        <!-- ============================================================ -->
+        <h2>Part 3: Connect to GitHub</h2>
+        <!-- ============================================================ -->
+
+        <p class="section-intro">Now that your tools are installed, you need to connect your terminal to your GitHub account. This is a one-time setup.</p>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">6</span> Log into GitHub from the terminal</div>
+            <p>In Warp, type this command and press Enter:</p>
+            <div class="command-block">
+                <span class="prompt">$ </span>gh auth login
+            </div>
+            <p>It will ask you a series of questions. Here's exactly what to choose:</p>
+            <table>
+                <tr><th>It asks...</th><th>You choose...</th></tr>
+                <tr><td>Where do you use GitHub?</td><td><strong>GitHub.com</strong></td></tr>
+                <tr><td>What is your preferred protocol?</td><td><strong>HTTPS</strong></td></tr>
+                <tr><td>How would you like to authenticate?</td><td><strong>Login with a web browser</strong></td></tr>
+            </table>
+            <p>It shows you a code and opens your web browser. Paste the code into the browser, click Authorize, and you're done.</p>
+            <div class="step-why">
+                <strong>What just happened:</strong> Your terminal can now talk to GitHub. When you "push" code (send it to GitHub) or "pull" code (download changes someone else made), it knows who you are. You won't need to log in again.
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>Part 4: Get Your Project</h2>
+        <!-- ============================================================ -->
+
+        <p class="section-intro">Your collaborator has already created the project on GitHub and set it up with everything you need. Now you'll download a copy to your Mac.</p>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">7</span> Clone the project</div>
+            <p>In Warp, type these commands one at a time, pressing Enter after each:</p>
+            <div class="command-block">
+                <span class="comment"># Download the project to your Mac</span><br>
+                <span class="prompt">$ </span>gh repo clone whale/ghost-theme-luis ~/ghost-theme-luis<br><br>
+                <span class="comment"># Move into the project folder</span><br>
+                <span class="prompt">$ </span>cd ~/ghost-theme-luis
+            </div>
+            <p><strong>"Clone"</strong> means download a copy of the project from GitHub to your computer. The <code>~/ghost-theme-luis</code> part tells it where to put it — in a folder called <code>ghost-theme-luis</code> inside your home folder.</p>
+            <p><strong>"cd"</strong> stands for "change directory" — it's like double-clicking a folder in Finder. You're telling the terminal "I want to be inside this folder now."</p>
+            <div class="step-why">
+                <strong>What you just downloaded:</strong>
+                <ul>
+                    <li>Your starter theme files (the skeleton of a Ghost theme — ready to customize)</li>
+                    <li>A reference guide that teaches Claude how Ghost themes work</li>
+                    <li>Instructions (CLAUDE.md) that tell Claude how to work with you</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">8</span> Download the reference themes</div>
+            <p>Run the setup script one more time — now that the project folder exists, it'll download 20+ professional Ghost themes that Claude will study as examples:</p>
+            <div class="command-block">
+                <span class="prompt">$ </span>bash ~/setup.sh
+            </div>
+            <p>This adds a <code>reference/</code> folder inside your project with all the official Ghost themes. You don't need to read these — they're for Claude to learn from.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>Part 5: Start Building</h2>
+        <!-- ============================================================ -->
+
+        <p class="section-intro">This is the fun part. You're going to talk to Claude in plain English and build your theme together.</p>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">9</span> Launch Claude Code</div>
+            <p>Make sure you're in your project folder, then start Claude:</p>
+            <div class="command-block">
+                <span class="prompt">$ </span>cd ~/ghost-theme-luis<br>
+                <span class="prompt">$ </span>claude
+            </div>
+            <p><strong>First time only:</strong> It opens a browser window for you to log in with your Claude account. Do that, and it drops you back into the terminal.</p>
+            <p>You're now inside Claude Code. You'll see a prompt where you can type in plain English. Try saying something like:</p>
+            <div class="command-block" style="background:#1e293b;">
+                <span style="color:#94a3b8">You:</span> <span style="color:#e2e8f0">What files are in my project? Give me a quick overview.</span>
+            </div>
+            <p>Claude reads your project, understands the structure, and responds. It can see all the files, read the reference themes, and use the documentation — all automatically.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">10</span> Start building from your Figma design</div>
+            <p>Share your Figma design with Claude by describing what you see, or share a screenshot. Then tell it what to build:</p>
+            <div class="command-block" style="background:#1e293b;">
+                <span style="color:#94a3b8">You:</span> <span style="color:#e2e8f0">I want my homepage to have a large title at the top, then a list of my posts below with just the title and date. The font should be Inter. Here's what it looks like in my Figma design: [describe or paste screenshot]</span>
+            </div>
+            <p>Claude will write the HTML and CSS, explain what it did, and save your progress automatically.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <h2>Part 6: See Your Theme on Ghost</h2>
+        <!-- ============================================================ -->
+
+        <div class="step">
+            <div class="step-title"><span class="step-number">11</span> Upload your theme to Ghost</div>
+            <p>When you want to see how your theme looks on your actual Ghost site:</p>
+            <ol style="margin-left:1.25rem; margin-top:0.5rem;">
+                <li style="margin-bottom:0.5rem;">Tell Claude: <strong>"Package my theme for upload"</strong></li>
+                <li style="margin-bottom:0.5rem;">Claude creates a <code>.zip</code> file and tells you where it is</li>
+                <li style="margin-bottom:0.5rem;">Open your Ghost Admin panel (your-site.ghost.io/ghost/)</li>
+                <li style="margin-bottom:0.5rem;">Go to <strong>Settings → Design → Change theme → Upload theme</strong></li>
+                <li style="margin-bottom:0.5rem;">Choose the .zip file Claude created</li>
+                <li>Visit your site to see it live</li>
+            </ol>
+            <div class="step-why">
+                <strong>Why the zip step?</strong> Ghost themes are uploaded as compressed packages. Claude packages everything in your <code>dev/luis/</code> folder into a single file that Ghost understands. Later, we can set up automatic deployment so this happens every time you save — but for now, the manual upload keeps things simple.
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- ============================================================ -->
+        <h2>Daily Workflow</h2>
+        <!-- ============================================================ -->
+
+        <p>Once everything is set up, this is your routine:</p>
+
+        <ol>
+            <li><strong>Open Warp</strong></li>
+            <li>Type <code>cd ~/ghost-theme-luis && claude</code> and press Enter</li>
+            <li>Tell Claude what you want to work on</li>
+            <li>When you want to see your changes on Ghost, say "package my theme" and upload the zip</li>
+            <li>When you're done for the day, say "save my progress and push to GitHub"</li>
+        </ol>
+
+        <div class="cheat-sheet">
+            <h3>Cheat Sheet — Things to Say to Claude</h3>
+            <table>
+                <tr><th>You say...</th><th>What happens</th></tr>
+                <tr><td>"Save my progress"</td><td>Creates a save point (like saving a video game)</td></tr>
+                <tr><td>"Undo that"</td><td>Reverses the last change Claude made</td></tr>
+                <tr><td>"It was working before"</td><td>Shows you past save points — pick one to go back to</td></tr>
+                <tr><td>"Show me what changed"</td><td>Shows a before/after comparison</td></tr>
+                <tr><td>"Package my theme"</td><td>Creates a .zip to upload to Ghost</td></tr>
+                <tr><td>"Push my changes"</td><td>Sends your latest work to GitHub</td></tr>
+                <tr><td>"Pull the latest changes"</td><td>Downloads changes your collaborator made</td></tr>
+                <tr><td>"What does this file do?"</td><td>Claude explains any file in plain English</td></tr>
+                <tr><td>"How does [theme name] handle this?"</td><td>Claude reads a reference theme and explains their approach</td></tr>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- ============================================================ -->
+        <h2>Key Concepts (in plain language)</h2>
+        <!-- ============================================================ -->
+
+        <h3>Terminal</h3>
+        <p>A text-based way to control your computer. Instead of clicking icons, you type short commands. Looks intimidating at first, but you'll mostly just type <code>cd</code> (to go to a folder) and <code>claude</code> (to start your AI helper). Claude handles the rest.</p>
+
+        <h3>Git &amp; GitHub</h3>
+        <p><strong>Git</strong> is your save-point system. Every time you (or Claude) "commit," it takes a snapshot of your entire project. You can go back to any snapshot at any time. Nothing is ever truly lost.</p>
+        <p><strong>GitHub</strong> is where those snapshots live online. It's how you and your collaborator share work — like a Google Doc, but for code. You both push your changes up and pull each other's changes down.</p>
+
+        <h3>Ghost Theme</h3>
+        <p>A Ghost theme is a collection of files that tell your Ghost website how to look. There are three types of files:</p>
+        <ul>
+            <li><strong>.hbs files</strong> (Handlebars templates) — the structure of each page. Like wireframes that say "put the title here, the date there, the content below."</li>
+            <li><strong>.css files</strong> — the styling. Colors, fonts, spacing, layout. This is where your Figma design becomes real.</li>
+            <li><strong>.js files</strong> — behavior (optional). Things like "load more posts when I scroll down" or "show a menu when I click the hamburger icon."</li>
+        </ul>
+
+        <h3>Claude Code</h3>
+        <p>An AI that lives in your terminal. You describe what you want in plain English, it writes the code. It can read all your project files, study the reference themes, and make changes — but it always explains what it did and asks before doing anything risky. Think of it as a developer you're creative-directing.</p>
+
+        <hr>
+
+        <p style="color:#888; font-size:0.85rem; margin-top:2rem;">Guide prepared for Luis. If you get stuck, ask Claude — it's designed to help you work through problems. If Claude is stuck, ask your collaborator.</p>
+
+    </div>
+</body>
+</html>
