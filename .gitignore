@@ -1,0 +1,20 @@
+# Reference themes (downloaded from GitHub, not our code)
+/reference/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node modules (if any theme ever needs them)
+node_modules/
+
+# Ghost build artifacts
+/dev/*/built/
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Playwright MCP session data
+.playwright-mcp/

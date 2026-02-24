@@ -1,0 +1,16 @@
+{
+    "name": "luis",
+    "description": "A custom Ghost theme by Luis",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Luis"
+    },
+    "config": {
+        "posts_per_page": 10,
+        "card_assets": true
+    }
+}

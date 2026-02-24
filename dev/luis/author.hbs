@@ -1,0 +1,20 @@
+{{!-- Author archive template --}}
+{{!-- Shows all posts by a specific author. --}}
+
+<main>
+    <header>
+        <h1>{{author.name}}</h1>
+        {{#if author.bio}}
+            <p>{{author.bio}}</p>
+        {{/if}}
+    </header>
+
+    {{#foreach posts}}
+        <article>
+            <h2><a href="{{url}}">{{title}}</a></h2>
+            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM D, YYYY"}}</time>
+        </article>
+    {{/foreach}}
+
+    {{pagination}}
+</main>
